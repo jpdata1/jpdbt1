@@ -1,7 +1,7 @@
 {{
     config(
-        materialized='incremental',
-        unique_key='EMPLOYEE_ID'
+        materialized='table',
+        tags =['stg']
     )
 }}
 select EMPLOYEE_ID,
@@ -17,7 +17,4 @@ MANAGER_ID,
 DEPARTMENT_ID,
 LOAD_TIME
 from {{source('hr','src_employees')}}
-
-{% if is_incremental() %}
-where LOAD_TIME > (select coalesce(max(LOAD_TIME),'1900-01-01') from {{this}})
-{% endif %}
+where salary is not null
