@@ -10,5 +10,5 @@ DEPARTMENT_NAME,
 MANAGER_ID,
 LOCATION_ID,
 LOAD_TIME
-from {{source('hr','SRC_DEPARTMENTS')}}
+from {{source('hr','src_departments')}}
 where DEPARTMENT_ID is not null
