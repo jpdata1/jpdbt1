@@ -1,8 +1,1 @@
 version: 2
-
-sources:
-  - name: hr
-    database: source
-    schema: hr
-    tables:
-     - name: src_employees

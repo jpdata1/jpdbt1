@@ -13,4 +13,4 @@ select
 	COUNTRY_ID ,
 	LOAD_TIME 
 from {{source('hr','src_locations')}}
-where location_id is not null;
+where location_id is not null
