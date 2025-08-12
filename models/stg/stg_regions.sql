@@ -1,12 +1,19 @@
 {{
     config(
-        materialized='table',
-        tags =['stg']
+        materialized='incremental',
+        unique_key='region_id',
+	incremental_strategy = 'delete+insert',
+	tags = ['dim']
     )
 }}
-select 
-region_id,
-INITCAP(region_name) as region_name,
-current_timestamp() as LOAD_TIME
+select
+	region_id ,
+	region_name ,
+	current_timestamp as load_time 
 from {{source('hr','src_regions')}}
-where region_id is not null
+
+{% if is_incremental() %}
+
+{{ inc() }}
+
+{% endif %}

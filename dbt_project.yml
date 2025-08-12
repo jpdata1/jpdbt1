@@ -44,10 +44,5 @@ models:
       +schema: fct
     stg:
       +schema: stg
-    +pre-hook:
-    - "insert into jp_dbt.jp_dbt_sc.audit_log(model_name,event_type,executed_at,dbt_user)
-      values('{{this.name}}','START',current_timestamp,current_user)" 
-    +post-hook:
-    - "insert into jp_dbt.jp_dbt_sc.audit_log(model_name,event_type,executed_at,dbt_user)
-      values('{{this.name}}','END',current_timestamp,current_user)"    
+  
 

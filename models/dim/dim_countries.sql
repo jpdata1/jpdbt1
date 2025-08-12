@@ -2,8 +2,8 @@
     config(
         materialized='incremental',
         unique_key='country_id',
-	    incremental_strategy = 'delete+insert',
-	    tags = ['dim']
+	incremental_strategy = 'delete+insert',
+	tags = ['dim']
     )
 }}
 select 

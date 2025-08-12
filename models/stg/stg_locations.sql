@@ -11,6 +11,6 @@ select
 	CITY ,
 	STATE_PROVINCE ,
 	COUNTRY_ID ,
-	LOAD_TIME 
+	current_timestamp as load_time 
 from {{source('hr','src_locations')}}
 where location_id is not null

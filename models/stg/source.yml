@@ -74,6 +74,4 @@ sources:
           - name: employee_id
             tests:
             - not_null
-            - unique                                 
-            
-          
+            - unique        

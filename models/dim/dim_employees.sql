@@ -2,8 +2,8 @@
     config(
         materialized='incremental',
         unique_key='EMPLOYEE_ID',
-	    incremental_strategy = 'delete+insert',
-	    tags = ['dim']
+	incremental_strategy = 'delete+insert',
+	tags = ['dim']
     )
 }}
 select EMPLOYEE_ID,
@@ -17,7 +17,7 @@ SALARY,
 COMMISSION_PCT,
 MANAGER_ID,
 DEPARTMENT_ID,
-current_timestamp as LOAD_TIME
+LOAD_TIME
 from {{ref('stg_employees')}}
 
 {% if is_incremental() %}
