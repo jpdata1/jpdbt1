@@ -36,7 +36,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  jp_dbt_project:
+  jp_dbt_project:         
     # Applies to all files under models/example/
     dim:
       +schema: dim
@@ -44,4 +44,10 @@ models:
       +schema: fct
     stg:
       +schema: stg
+    +pre-hook:
+    - "insert into jp_dbt.jp_dbt_sc.audit_log(model_name,event_type,executed_at,dbt_user)
+      values('{{this.name}}','START',current_timestamp,current_user)" 
+    +post-hook:
+    - "insert into jp_dbt.jp_dbt_sc.audit_log(model_name,event_type,executed_at,dbt_user)
+      values('{{this.name}}','END',current_timestamp,current_user)"    
 

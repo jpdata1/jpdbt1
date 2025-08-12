@@ -1,12 +1,12 @@
 {{
     config(
         materialized='table',
-        tags=['stg']
+        tags =['stg']
     )
 }}
-select
-	REGION_ID ,
-	REGION_NAME ,
-	LOAD_TIME 
+select 
+region_id,
+INITCAP(region_name) as region_name,
+current_timestamp() as LOAD_TIME
 from {{source('hr','src_regions')}}
 where region_id is not null
